@@ -1,0 +1,536 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+$btn-font-weight        : normal;
+
+$btn-default-color      : $text-color;
+$btn-default-bg         : $background-color-white;
+$btn-default-border     : $border-color-base;
+
+$btn-primary-color         : $background-color-white;
+$btn-primary-bg            : $primary-color;
+
+$btn-success-color      : $background-color-white;
+$btn-success-bg         : $success-color;
+$btn-success-border     : $success-color;
+
+$btn-warning-color      : $background-color-white;
+$btn-warning-bg         : $warning-color;
+$btn-warning-border     : $warning-color;
+
+$btn-danger-color    : $background-color-white;
+$btn-danger-bg       : $error-color;
+$btn-danger-border   : $error-color;
+
+$btn-disable-color      : $background-color-white;
+$btn-disable-bg         : #ddd;
+$btn-disable-border     : #ddd;
+$btn-disable-border-no-outline     : #aaa;
+
+$btn-padding-lg         : 12px 36px;
+$btn-padding-base       : 6px 24px;
+$btn-padding-sm         : 5px 16px;
+$btn-padding-xs         : 4px 16px;
+
+$height-lg     : 48px;
+$height-sm     : 28px;
+$height-xs     : 24px;
+
+// mixins for button
+// ------------------------
+@mixin button-size($padding, $font-size, $border-radius) {
+  padding: $padding;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+@mixin button-variant($btnClassName, $color, $background, $border) {
+  @include button-color($btnClassName, $color, $background, $border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, tint($color, 20%), tint($background, 20%), tint($border, 20%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, shade($color, 5%), shade($background, 5%), shade($background, 5%));
+  }
+
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @include button-color($btnClassName, $btn-disable-color, tint($background, 35%), tint($background, 35%));
+    }
+  }
+}
+
+@mixin button-color($btnClassName, $color, $background, $border) {
+  > .#{$iconfont-css-prefix} {
+    color: $color;
+  }
+  // 无背景色无边框
+  &.#{$btnClassName}-circle-outline,
+  &.#{$btnClassName}-no-outline {
+    color: $border;
+    background-color: transparent;
+    > .#{$iconfont-css-prefix} {
+      color: $border;
+    }
+  }
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+  // a inside Button which only work in Chrome
+  // http://stackoverflow.com/a/17253457
+  > a:only-child {
+    color: currentColor;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: transparent;
+    }
+  }
+}
+
+@mixin button-group($btnClassName, $color) {
+  .#{$btnClassName}-group &:not(:first-child):not(:last-child) {
+    border-right-color: shade($color, 5%);
+    border-left-color: shade($color, 5%);
+  }
+
+  .#{$btnClassName}-group &:last-child {
+    &:not(:first-child) {
+      border-left-color: shade($color, 5%);
+      &[disabled] {
+        border-right-color: $btn-default-border;
+      }
+    }
+  }
+
+  .#{$btnClassName}-group &:first-child:not(:last-child),
+  .#{$btnClassName}-group & + .#{$btnClassName} {
+    &[disabled] {
+      border-left-color: $btn-default-border;
+    }
+  }
+}
+
+@mixin button-group-base($btnClassName) {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  > .#{$btnClassName} {
+    position: relative;
+    float: left;
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+  }
+
+  // size
+  &-lg > .#{$btnClassName} {
+    @include button-size($btn-padding-lg, $font-size-lg, $border-radius-base);
+    > .#{$iconfont-css-prefix} {
+      font-size: $font-size-lg + 6;
+      width: $font-size-lg + 6;
+    }
+  }
+
+  &-sm > .#{$btnClassName} {
+    @include button-size($btn-padding-sm, $font-size-base, $border-radius-base);
+    > .#{$iconfont-css-prefix} {
+      font-size: $font-size-sm + 2;
+      width: $font-size-sm + 2;
+    }
+  }
+
+  &-xs {
+    @include button-size($btn-padding-xs, $font-size-sm, $border-radius-base);
+    height: $height-xs;
+    > i.#{$iconfont-css-prefix} {
+      font-size: $font-size-sm;
+      width: $font-size-sm;
+    }
+  }
+}
+
+@mixin loading-height($btnClassName, $height) {
+  .#{$iconfont-css-prefix} {
+    line-height: $height - 2;
+  }
+  &.#{$btnClassName}-no-outline .#{$iconfont-css-prefix} {
+    line-height: $height;
+  }
+}
+
+// Base styles of buttons
+// --------------------------------------------------
+@mixin btn() {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  // outline: none;
+  white-space: nowrap;
+  line-height: 1;
+  @include button-size($btn-padding-base, $font-size-base, $border-radius-base);
+  user-select: none;
+  transition: all .3s $ease-in-out, margin 0s;
+  transform: translate3d(0, 0, 0);
+  height: $height-base;
+
+  > .#{$iconfont-css-prefix} {
+    vertical-align: middle;
+    line-height: 1;
+    color: $icon-color;
+    font-size: $font-size-base + 2;
+    width: $font-size-base + 2;
+    transition: all .3s $ease-in-out;
+  }
+  > span {
+    vertical-align: middle;
+  }
+
+  &,
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  &:not([disabled]):hover {
+    text-decoration: none;
+  }
+
+  &:not([disabled]):active {
+    outline: 0;
+    transition: none;
+  }
+
+  &.disabled,
+  &[disabled] {
+    cursor: $cursor-disabled;
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  &-lg {
+    @include button-size($btn-padding-lg, $font-size-lg, $border-radius-base);
+    height: $height-lg;
+    > i.#{$iconfont-css-prefix} {
+      font-size: $font-size-lg + 6;
+      width: $font-size-lg + 6;
+    }
+  }
+
+  &-sm {
+    @include button-size($btn-padding-sm, $font-size-sm, $border-radius-base);
+    height: $height-sm;
+    > i.#{$iconfont-css-prefix} {
+      font-size: $font-size-sm + 2;
+      width: $font-size-sm + 2;
+    }
+  }
+
+  &-xs {
+    @include button-size($btn-padding-xs, $font-size-sm, $border-radius-base);
+    height: $height-xs;
+    > i.#{$iconfont-css-prefix} {
+      font-size: $font-size-sm;
+      width: $font-size-sm;
+    }
+  }
+}
+
+// default button style
+@mixin btn-default($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-default-color, $btn-default-bg, $btn-default-border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, tint($primary-color, 20%), white, tint($primary-color, 20%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, shade($primary-color, 5%), white, shade($primary-color, 5%));
+  }
+  &.#{$btnClassName}-no-outline > .#{$iconfont-css-prefix},
+  &.#{$btnClassName}-circle-outline > .#{$iconfont-css-prefix},
+  > .#{$iconfont-css-prefix} {
+    color: $icon-color;
+  }
+  &.#{$btnClassName}-no-outline {
+    color: $text-color;
+  }
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @include button-color($btnClassName, $btn-disable-color, $btn-disable-bg, $btn-disable-border);
+      &.#{$btnClassName}-no-outline {
+        color: $btn-disable-border-no-outline;
+      }
+    }
+  }
+}
+
+@mixin btn-loading($btnClassName: btn) {
+  pointer-events: none;
+  position: relative;
+  @include loading-height($btnClassName, $height-base);
+
+  .#{$iconfont-css-prefix} {
+    animation: loadingCircle 1s infinite linear;
+  }
+  &.#{$btnClassName}-lg {
+    @include loading-height($btnClassName, $height-lg);
+  }
+  &.#{$btnClassName}-sm {
+    @include loading-height($btnClassName, $height-sm);
+  }
+  &.#{$btnClassName}-xs {
+    @include loading-height($btnClassName, $height-xs);
+  }
+  // 实现有 icon 与无 icon 时按钮长度一致
+  &:not(.#{$btnClassName}-icon-only) {
+    .#{$iconfont-css-prefix} {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      font-size: $font-size-base;
+      width: $font-size-base;
+      transition: all .3s $ease-in-out;
+    }
+  }
+  &.#{$btnClassName}-icon-only {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  // 实现有 icon 与无 icon 时按钮长度一致
+  &.#{$btnClassName}-icon-right:not(.#{$btnClassName}-icon-only) {
+    > span {
+      margin-left: -0.71em;
+      margin-right: 0.71em;
+    }
+    > span + .#{$iconfont-css-prefix} {
+      margin-left: -0.29em;
+    }
+  }
+  &:not(.#{$btnClassName}-icon-right):not(.#{$btnClassName}-icon-only) {
+    > .#{$iconfont-css-prefix} {
+      margin-left: -0.71em;
+    }
+    > .#{$iconfont-css-prefix} + span {
+      margin-left: 0.71em;
+      margin-right: -0.71em;
+    }
+  }
+}
+@mixin btn-no-outline($btnClassName: btn) {
+  padding: 0;
+  border: 0;
+  @include button-variant($btnClassName, $icon-color, transparent, $btn-disable-border-no-outline);
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @include button-color($btnClassName, $icon-color, transparent, $btn-disable-border-no-outline);
+    }
+  }
+}
+
+// primary button style
+@mixin btn-primary($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-primary-color, $btn-primary-bg, $primary-color);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, $btn-primary-color, tint($primary-color, 20%), tint($primary-color, 20%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, $btn-primary-color, shade($primary-color, 20%), shade($primary-color, 20%));
+  }
+  @include button-group($btnClassName, $btn-primary-bg);
+}
+
+@mixin btn-ghost($btnClassName: btn) {
+  @include button-variant($btnClassName, $primary-color, $btn-default-bg, $primary-color);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, tint($primary-color, 20%), $btn-default-bg, tint($primary-color, 20%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, shade($primary-color, 20%), $btn-default-bg, shade($primary-color, 20%));
+  }
+  @include button-group($btnClassName, $btn-primary-bg);
+
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @include button-color($btnClassName, tint($primary-color, 35%), $btn-default-bg, tint($primary-color, 35%));
+    }
+  }
+}
+// success button style
+@mixin btn-success($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-success-color, $btn-success-bg, $btn-success-border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, $btn-success-color, tint($success-color, 20%), tint($success-color, 20%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, $btn-success-color, shade($success-color, 5%), shade($success-color, 5%));
+  }
+  @include button-group($btnClassName, $btn-success-bg);
+}
+
+// warning button style
+@mixin btn-warning($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-warning-color, $btn-warning-bg, $btn-warning-border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, $btn-warning-color, tint($warning-color, 20%), tint($warning-color, 20%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, $btn-warning-color, shade($warning-color, 5%), shade($warning-color, 5%));
+  }
+  @include button-group($btnClassName, $btn-warning-bg);
+}
+
+// danger button style
+@mixin btn-danger($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-danger-color, $btn-danger-bg, $btn-danger-border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, $btn-danger-color, tint($error-color, 20%), tint($error-color, 20%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, $btn-danger-color, shade($error-color, 5%), shade($error-color, 5%));
+  }
+  @include button-group($btnClassName, $btn-danger-bg);
+}
+@mixin btn-no-outline($btnClassName: btn) {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background-color: transparent;
+    border: 0;
+  }
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: #fff;
+    }
+  }
+}
+// circle button: the content only contains icon
+@mixin btn-circle($btnClassName: btn) {
+  @include square($height-base);
+  @include button-size(0, $font-size-base + 2, 50%);
+
+  &.#{$btnClassName}-lg {
+    @include square($height-lg);
+    @include button-size(0, $font-size-lg + 2, 50%);
+  }
+
+  &.#{$btnClassName}-sm {
+    @include square($height-sm);
+    @include button-size(0, $font-size-sm + 2, 50%);
+  }
+  &.#{$btnClassName}-xs {
+    @include square($height-xs);
+    @include button-size(0, $font-size-sm, 50%);
+  }
+}
+
+// Horizontal button groups styl
+// --------------------------------------------------
+@mixin btn-group($btnClassName: btn) {
+  @include button-group-base($btnClassName);
+
+  .#{$btnClassName} + .#{$btnClassName},
+  .#{$btnClassName} + &,
+  & + .#{$btnClassName},
+  & + & {
+    margin-left: -1px;
+  }
+
+  .#{$btnClassName}:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  > .#{$btnClassName}:first-child {
+    margin-left: 0;
+    &:not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  > .#{$btnClassName}:last-child:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  & > & {
+    float: left;
+  }
+
+  & > &:not(:first-child):not(:last-child) > .#{$btnClassName} {
+    border-radius: 0;
+  }
+
+  & > &:first-child:not(:last-child) {
+    > .#{$btnClassName}:last-child {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-right: 8px;
+    }
+  }
+
+  & > &:last-child:not(:first-child) > .#{$btnClassName}:first-child {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding-left: 8px;
+  }
+}

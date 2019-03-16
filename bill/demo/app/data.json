@@ -1,0 +1,22 @@
+{
+  "id":"KB001",
+  "name":0,
+  "nick":"张三zhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.com",
+  "mail":"zhangsan@qq.comzhangsan@meituan.comzhangsan@meituan.com",
+  "company_mail":"zhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.com",
+  "address":"研发园附近zhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.com",
+  "money":0,
+  "money2":12313131313.22113,
+  "password":"",
+  "memo":"这是一个测试用户zhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.comzhangsan@meituan.com",
+  "birthday": 1480928193680,
+  "workDate": "",
+  "dept": {"name":"hhh","id":"q"},
+  "enjoy": [
+    {"name":"hhh","id":"q"}
+  ],
+  "attachment": [
+    {"id": "1", "name": "哈哈哈哈", "url": "http://www.baidu.com"},
+    {"id": "2", "name": "呵呵呵呵", "url": "http://www.baidu.com"}
+  ]
+}

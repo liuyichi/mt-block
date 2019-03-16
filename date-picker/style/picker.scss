@@ -1,0 +1,392 @@
+@import '../../style/themes/default.scss';
+@import "../../style/mixins/index";
+
+$date-picker-basic-prefix-cls: 'date-picker';
+$time-picker-basic-prefix-cls: 'time-picker';
+$range-picker-basic-prefix-cls: 'range-picker';
+$date-picker-prefix-cls: #{$prefix-cls}-#{$date-picker-basic-prefix-cls};
+$time-picker-prefix-cls: #{$prefix-cls}-#{$time-picker-basic-prefix-cls};
+$range-picker-prefix-cls: #{$prefix-cls}-#{$range-picker-basic-prefix-cls};
+
+//日期选择器
+.#{$date-picker-basic-prefix-cls} {
+  font-size: $font-size-base;
+  line-height: 20px;
+  position: relative;
+  width: 100%;
+  & &-show-field {
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 7px 0 7px 10px;
+    border: 1px solid #ddd;
+    min-height: 36px;
+    white-space: nowrap;
+    position: relative;
+    &:hover, &:focus {
+      outline: none;
+      cursor: pointer;
+    }
+    &:hover .#{$date-picker-basic-prefix-cls}-clear-btn {
+      display: block;
+    }
+  }
+  & &-calendar-mark {
+    //加了2px的padding，因为clear-btn在没有padding时不能完全遮住
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    line-height: 1;
+    padding: 2px;
+  }
+  & &-placeholder, & &-show-value {
+    position: absolute;
+    left: 10px;
+    right: $height-base - 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  & &-show-value {
+    background-color: #fff;
+  }
+  & &-clear-btn {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    line-height: 1;
+    background-color: #fff;
+    display: none;
+    padding: 2px;
+  }
+  &#{&}-disabled {
+    .#{$date-picker-basic-prefix-cls}-show-field {
+      &:hover, &:focus {
+        cursor: not-allowed;
+      }
+    }
+  }
+  &#{&}-invalid {
+    .#{$date-picker-basic-prefix-cls}-explain {
+      font-size: 12px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+  }
+  &#{&}-view {
+    line-height: $height-base;
+    height: $height-base;
+  }
+  &#{&}-sm {
+    font-size: $font-size-sm;
+    .#{$date-picker-basic-prefix-cls}-show-field {
+      min-height: $height-sm;
+      padding: 1px 0 1px 8px;
+    }
+    .#{$date-picker-basic-prefix-cls}-placeholder {
+      left: 8px;
+      right: $height-sm - 2;
+    }
+    .#{$date-picker-basic-prefix-cls}-show-value {
+      left: 8px;
+      right: $height-sm - 2;
+    }
+    .#{$date-picker-basic-prefix-cls}-calendar-mark,
+    .#{$date-picker-basic-prefix-cls}-clear-btn {
+      top: 3px;
+      right: 4px;
+    }
+    &.#{$date-picker-basic-prefix-cls}-view {
+      height: $height-sm;
+      line-height: $height-sm;
+    }
+  }
+}
+
+.#{$date-picker-prefix-cls} {
+  & &-show-field {
+    border-radius: 2px;
+    transition: border-color .2s ease;
+    &:hover, &:focus {
+      border-color: $primary-color;
+    }
+  }
+  & &-show-value {
+    color: #666;
+  }
+  & &-calendar-mark, & &-placeholder {
+    color: #aaa;
+  }
+  & &-clear-btn {
+    color: #ddd;
+    &:hover {
+      color: #aaa;
+    }
+  }
+  &.#{$date-picker-basic-prefix-cls}-disabled {
+    .#{$date-picker-basic-prefix-cls}-show-field {
+      background-color: #f8f8f8;
+      &:hover, &:focus {
+        border-color: #ddd;
+      }
+    }
+    .#{$date-picker-basic-prefix-cls}-placeholder,
+    .#{$date-picker-basic-prefix-cls}-show-value {
+      color: #aaa;
+      background-color: transparent;
+    }
+  }
+  &.#{$date-picker-basic-prefix-cls}-focused {
+    .#{$date-picker-prefix-cls}-show-field {
+      border-color: $primary-color;
+    }
+  }
+
+  &.#{$date-picker-basic-prefix-cls}-invalid {
+    .#{$date-picker-prefix-cls}-show-field {
+      &, &:hover {
+        border-color: $error-color;
+      }
+    }
+    .#{$date-picker-prefix-cls}-explain {
+      font-size: 12px;
+      line-height: 1;
+      margin-top: 2px;
+      color: $error-color;
+    }
+  }
+}
+
+
+//时间选择器
+.#{$time-picker-basic-prefix-cls} {
+  font-size: 14px;
+  position: relative;
+  line-height: 20px;
+  width: 100%;
+  & &-show-field {
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 7px 0 7px 10px;
+    border: 1px solid #ddd;
+    min-height: 36px;
+    white-space: nowrap;
+    position: relative;
+    &:hover, &:focus {
+      outline: none;
+      cursor: pointer;
+    }
+    &:hover .#{$time-picker-basic-prefix-cls}-clear-btn {
+      display: block;
+    }
+  }
+  & &-time-mark {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    line-height: 1;
+    padding: 2px;
+  }
+  & &-placeholder, & &-show-value {
+    position: absolute;
+    left: 10px;
+    right: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  & &-show-value {
+    background-color: #fff;
+  }
+  & &-clear-btn {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    line-height: 1;
+    background-color: #fff;
+    display: none;
+    padding: 2px;
+  }
+  &#{&}-disabled {
+    .#{$time-picker-basic-prefix-cls}-show-field {
+      &:hover, &:focus {
+        cursor: not-allowed;
+      }
+    }
+  }
+  &#{&}-invalid {
+    .#{$time-picker-basic-prefix-cls}-explain {
+      font-size: 12px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+  }
+  &#{&}-view {
+    line-height: 36px;
+    min-height: 36px;
+  }
+  &__trigger {
+    width: 100%;
+    max-width: 200px;
+    min-width: 60px;
+    &.second-included {
+      max-width: 300px;
+      min-width: 90px;
+    }
+  }
+  &#{&}-sm {
+    font-size: $font-size-sm;
+    .#{$time-picker-basic-prefix-cls}-show-field {
+      min-height: $height-sm;
+      padding: 1px 0 1px 8px;
+    }
+    .#{$time-picker-basic-prefix-cls}-placeholder {
+      left: 8px;
+      right: $height-sm - 2;
+    }
+    .#{$time-picker-basic-prefix-cls}-show-value {
+      left: 8px;
+    }
+    .#{$time-picker-basic-prefix-cls}-time-mark,
+    .#{$time-picker-basic-prefix-cls}-clear-btn {
+      top: 3px;
+      right: 4px;
+    }
+    &.#{$time-picker-basic-prefix-cls}-view {
+      height: $height-sm;
+      line-height: $height-sm;
+    }
+  }
+}
+
+.#{$time-picker-prefix-cls} {
+  & &-show-field {
+    border-radius: 2px;
+    transition: border-color .2s ease;
+    &:hover, &:focus {
+      border-color: $primary-color;
+    }
+  }
+  & &-show-value {
+    color: #666;
+  }
+  & &-time-mark, & &-placeholder {
+    color: #aaa;
+  }
+  & &-clear-btn {
+    color: #ddd;
+    &:hover {
+      color: #aaa;
+    }
+  }
+  &.#{$time-picker-basic-prefix-cls}-disabled {
+    .#{$time-picker-prefix-cls}-show-field {
+      background-color: #f8f8f8;
+      &:hover, &:focus {
+        border-color: #ddd;
+      }
+    }
+    .#{$time-picker-prefix-cls}-show-value {
+      color: #aaa;
+      background-color: transparent;
+    }
+  }
+  &.#{$time-picker-basic-prefix-cls}-focused {
+    .#{$time-picker-prefix-cls}-show-field {
+      border-color: $primary-color;
+    }
+  }
+  &.#{$time-picker-basic-prefix-cls}-invalid {
+    .#{$time-picker-prefix-cls}-show-field {
+      &, &:hover {
+        border-color: $error-color;
+      }
+    }
+    .#{$time-picker-prefix-cls}-explain {
+      color: $error-color;
+    }
+  }
+}
+
+.#{$date-picker-basic-prefix-cls}, .#{$time-picker-basic-prefix-cls} {
+  &__trigger {
+    border: none;
+    box-shadow: none;
+  }
+}
+
+//日期范围选择器
+$range-picker-checkbox-width: 66px;
+.#{$range-picker-basic-prefix-cls} {
+  position: relative;
+  width: 100%;
+  & &-date-picker-wrapper, & &-delimiter {
+    display: inline-block;
+    vertical-align: top;
+  }
+  & &-date-picker-wrapper {
+    width: 45%;
+  }
+  & &-delimiter {
+    font-size: 12px;
+    line-height: 36px;
+    width: 10%;
+    text-align: center;
+  }
+  &#{&}-up-to-now {
+    .#{$range-picker-basic-prefix-cls}-date-part {
+      margin-right: $range-picker-checkbox-width;
+    }
+    .#{$range-picker-basic-prefix-cls}-up-to-now-part {
+      width: $range-picker-checkbox-width;
+      position: absolute;
+      top: 0;
+      right: 0;
+      line-height: 36px;
+    }
+  }
+  & &-up-to-now-part {
+    font-size: 12px;
+    padding-left: 20px;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+  &#{&}-invalid {
+    .#{$range-picker-basic-prefix-cls}-explain {
+      font-size: 12px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+  }
+
+  &#{&}-view {
+    line-height: 36px;
+    min-height: 36px;
+  }
+  &#{&}-sm {
+    .#{$range-picker-basic-prefix-cls}-delimiter {
+      height: $height-sm;
+      line-height: $height-sm;
+    }
+  }
+}
+
+.#{$range-picker-prefix-cls} {
+  & &-up-to-now-part {
+    .#{$prefix-cls}-checkbox-label {
+      color: #333;
+    }
+  }
+  &.#{$range-picker-basic-prefix-cls}-invalid {
+    .#{$date-picker-basic-prefix-cls}-show-field {
+      border-color: $error-color;
+    }
+    .#{$range-picker-prefix-cls}-explain {
+      color: $error-color;
+    }
+    &.#{$range-picker-basic-prefix-cls}-up-to-now--on {
+      .end-date-picker-wrapper {
+        .#{$date-picker-basic-prefix-cls}-show-field {
+          border-color: #ddd;
+        }
+      }
+    }
+  }
+}

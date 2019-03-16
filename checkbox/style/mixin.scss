@@ -1,0 +1,244 @@
+@import "../../style/mixins/index";
+
+$width-base: 16px;
+$width-sm: 14px;
+
+@mixin checkboxFn($cls) {
+  .#{$cls} {
+    $inner-prefix-cls: "#{$cls}-inner";
+    cursor: pointer;
+    font-size: $font-size-base;
+    line-height: 1;
+    display: inline-block;
+    &-sm {
+      font-size: $font-size-sm;
+      & + & {
+        margin-left: 4px;
+      }
+      .#{$cls} {
+        &-inner {
+          width: $width-sm;
+          height: $width-sm;
+        }
+        &-checked .#{$cls}-inner {
+          &:after {
+            width: 4px;
+            height: 7px;
+            top: 2px;
+          }
+        }
+        + span {
+          margin-left: 4px;
+          margin-right: 4px;
+        }
+      }
+    }
+
+    // 一般状态
+    white-space: nowrap;
+    outline: none;
+    position: relative;
+    vertical-align: middle;
+
+    &:hover,
+    &-focused {
+      .#{$inner-prefix-cls} {
+        border-color: $border-color-hover;
+      }
+      .#{$cls}-checked,
+      .#{$cls}-indeterminate {
+        .#{$inner-prefix-cls} {
+          border-color: $primary-color;
+        }
+      }
+    }
+
+    &-inner {
+      vertical-align: middle;
+      box-sizing: $border-size;
+      &:after {
+        transform: rotate(45deg) scale(0);
+        position: absolute;
+        left: 4px;
+        top: 1px;
+        display: table;
+        width: 6px;
+        height: 10px;
+        border: 2px solid #fff;
+        border-top: 0;
+        border-left: 0;
+        content: ' ';
+        transition: all .1s $ease-in-back;
+      }
+
+      position: relative;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: $width-base;
+      height: $width-base;
+      border: 1px solid $border-color-base;
+      border-radius: $border-radius-base;
+      background-color: #fff;
+      transition: border-color 0.1s $ease-in-out-back, background-color 0.1s $ease-in-out-back;
+    }
+
+    &-input {
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      cursor: pointer;
+      box-sizing: $border-size;
+      @include opacity(0);
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      &[disabled],
+      &:disabled {
+        cursor: $cursor-disabled;
+      }
+    }
+
+    &-label,
+    + span {
+      color: $text-minor-color;
+      padding-left: 6px;
+      padding-right: 6px;
+      vertical-align: middle;
+    }
+
+    // 半选状态
+    &-indeterminate {
+      .#{$inner-prefix-cls} {
+        border-color: $primary-color;
+        background-color: $primary-color;
+        &:after {
+          content: ' ';
+          position: absolute;
+          transform: scale(1);
+          left: 3px;
+          top: 6px;
+          width: 8px;
+          height: 1px;
+        }
+      }
+      &:hover {
+        .#{$inner-prefix-cls} {
+          border-color: $primary-color;
+        }
+      }
+    }
+
+    // 选中状态
+    &-checked {
+      &:hover {
+        .#{$inner-prefix-cls} {
+          border-color: $primary-color;
+        }
+      }
+      .#{$inner-prefix-cls} {
+        border-color: $primary-color;
+        background-color: $primary-color;
+        &:after {
+          transform: rotate(45deg) scale(1);
+          position: absolute;
+          left: 4px;
+          top: 1px;
+          width: 6px;
+          height: 10px;
+          display: table;
+          border: 2px solid #fff;
+          border-top: 0;
+          border-left: 0;
+          content: ' ';
+          transition: all .2s $ease-out-back .1s;
+        }
+      }
+    }
+
+    &-disabled {
+      cursor: $cursor-disabled;
+      &:hover {
+        border-color: $border-color-base;
+        .#{$cls}-checked .#{$inner-prefix-cls},
+        .#{$inner-prefix-cls} {
+          border-color: $border-color-base;
+          cursor: $cursor-disabled;
+        }
+      }
+      .#{$inner-prefix-cls} {
+        border-color: $border-color-base;
+        background-color: $background-color-gray;
+        &:after {
+          animation-name: none;
+          border-color: $icon-color;
+        }
+      }
+      .#{$cls}-input {
+        cursor: $cursor-disabled;
+      }
+      & + span {
+        color: $text-aide-color;
+      }
+    }
+
+    &-group {
+      font-size: $font-size-base;
+      line-height: $height-base;
+      &-item {
+        display: inline-block;
+      }
+      &.has-error {
+        .has-explain {
+          font-size: $font-size-sm;
+          color: $error-color;
+          margin-top: 2px;
+          line-height: 1;
+        }
+        .#{$inner-prefix-cls} {
+          border-color: $error-color;
+        }
+      }
+      &-view {
+        min-height: $height-base;
+        word-break: break-all;
+        line-height: $line-height-base;
+        padding: 8px 0;
+      }
+      &-sm {
+        line-height: $height-sm;
+        font-size: $font-size-sm;
+        &.#{$cls}-group-view {
+          min-height: $height-sm;
+          padding: 4px 0;
+        }
+      }
+      &-item {
+        margin-right: 6px;
+      }
+      &-format {
+        display: inline-block;
+      }
+    }
+
+    $ie8: \0screen;
+
+    // IE8 hack for https://github.com/ant-design/ant-design/issues/2148
+    @media #{$ie8} {
+      .#{$cls}-checked .#{$cls}-inner:before,
+      .#{$cls}-checked .#{$cls}-inner:after {
+        @include iconfont-font("\e62e");
+        font-weight: bold;
+        font-size: 8px;
+        border: 0;
+        color: #fff;
+        left: 2px;
+        top: 3px;
+        position: absolute;
+      }
+    }
+  }
+}
+

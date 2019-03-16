@@ -1,0 +1,30 @@
+@import "./normalize";
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a, input, textarea {
+  &:focus {
+    outline: none;
+  }
+}
+
+// 隐藏 safari 下 input 默认填充图标
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  opacity: 0 !important;
+  position: absolute;
+}
+
+// Remove the clear button of a text input control in IE10+
+input::-ms-clear, input::-ms-reveal {
+  display: none;
+}

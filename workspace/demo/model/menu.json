@@ -1,0 +1,92 @@
+{
+  "data":[
+    {
+      "nodeCode":"home",
+      "nodeName":"首页",
+      "nodeType":"node"
+    },
+    {
+      "nodeCode":"console",
+      "nodeName":"工作台",
+      "nodeType":"folder",
+      "icon": "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+      "childrenMenuList":[
+        {
+          "nodeCode":"post-folder",
+          "nodeName":"需求池",
+          "icon": "settings",
+          "nodeType":"folder",
+          "childrenMenuList":[
+            {
+              "nodeCode":"post-list",
+              "nodeName":"需求列表",
+              "icon": "check",
+              "nodeType":"node",
+              "basePath": "console"
+            },
+            {
+              "nodeCode":"post-review",
+              "nodeName":"需求达成",
+              "nodeType":"node",
+              "basePath": "console"
+            }
+          ]
+        },
+        {
+          "nodeCode":"resume-folder",
+          "nodeName":"人才库",
+          "nodeType":"folder",
+          "childrenMenuList":[
+            {
+              "nodeCode":"resume-list",
+              "nodeName":"筛选",
+              "nodeType":"node"
+            },
+            {
+              "nodeCode":"resume-review",
+              "nodeName":"评审",
+              "nodeType":"node"
+            },
+            {
+              "nodeCode":"resume-interview",
+              "nodeName":"面试",
+              "nodeType":"node"
+            }
+          ]
+        },
+        {
+          "nodeCode":"my-interview",
+          "nodeName":"我的面试",
+          "nodeType":"node"
+        }
+      ]
+    },
+    {
+      "nodeCode":"upload-resume",
+      "nodeName":"上传简历",
+      "nodeType":"node",
+      "hide":true
+    },
+    {
+      "nodeCode":"bpm",
+      "nodeName":"流程平台",
+      "icon": "cross",
+      "nodeType":"folder",
+      "childrenMenuList": [
+        {
+          "nodeCode":"bpm-list",
+          "nodeName":"流程列表",
+          "nodeType":"node",
+          "icon": "plus",
+          "basePath": "bpm"
+        },
+        {
+          "nodeCode":"bpm-apprv",
+          "nodeName":"流程审批",
+          "nodeType":"node"
+        }
+      ]
+    }
+  ],
+  "status":"1"
+}

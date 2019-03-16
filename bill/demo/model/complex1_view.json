@@ -1,0 +1,41 @@
+{
+  "code":"complex_bill",
+  "column":"1",
+  "alignment":"right",
+  "forms":[
+    {
+      "code":"info",
+      "fields":[
+        {
+          "code":"mis",
+          "label":"Mis",
+          "type":"text",
+          "conf":{
+            "required":true,
+            "mode":"view"
+          }
+        },
+        {
+          "code":"name",
+          "label":"姓名",
+          "type":"text",
+          "conf": {
+            "mode":"view",
+            "required":true
+          }
+        },
+        {
+          "code":"age",
+          "label":"年龄",
+          "type":"number",
+          "conf": {
+            "mode":"view",
+            "required":true,
+            "validation":"必填项"
+          }
+        }
+      ]
+    }
+  ],
+  "events":[]
+}

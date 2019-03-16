@@ -1,0 +1,33 @@
+html > body {
+  background-color: #fff;
+}
+
+.api {
+  code{
+    margin: 0 1px;
+    background: #f7f7f7;
+    padding: .2em .4em;
+    border-radius: 3px;
+    font-size: .9em;
+    border: 1px solid #eee;
+    display: inline-block;
+  }
+  i {
+    padding: 0 5px;
+  }
+  table {
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    text-align: left;
+    caption {
+      text-align: left;
+      margin-bottom: 5px;
+    }
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 5px;
+    }
+  }
+}

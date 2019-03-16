@@ -1,0 +1,232 @@
+html, body, .page {
+  height: 100%;
+}
+.page {
+  overflow-y: auto;
+}
+.mt-table-thead > tr > th, .mt-table-tbody > tr > td {
+  word-break: normal;
+}
+
+.mt-table-tbody > tr:nth-child(6) > td:nth-child(2){
+  pre {
+    white-space: pre-wrap;
+  }
+}
+
+.trigger-basic-demo {
+  ul.demo-ul {
+    > li {
+      width: 300px;
+      display: inline-block;
+      margin-bottom: 10px;
+      > label {
+        display: inline-block;
+        vertical-align: middle;
+        &:after {
+          content: ":";
+          padding-right: 10px;
+        }
+        &.mt-checkbox {
+          padding-top: 0;
+          &:after {
+            content: "";
+          }
+        }
+      }
+      > div {
+        display: inline-block;
+        > .mt-select,
+        > .mt-input {
+          display: inline-block;
+          margin: 0 3px;
+        }
+        > .mt-select {
+          width: 100px;
+        }
+        > .mt-input {
+          width: 80px;
+        }
+      }
+      > ul {
+        display: inline-block;
+        > li {
+          width: 100px;
+          margin-bottom: 0;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .panel-body {
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    padding: 40px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    .target-node {
+      margin: 60px;
+      background-color: #f8f8f8;
+      text-align: center;
+      line-height: 200px;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ddd;
+    }
+  }
+}
+.trigger-tooltip-demo{
+  .operate-box{
+    margin-top: 30px;
+    .mt-btn{
+      display: inline-block;
+      margin-right: 20px;
+      vertical-align: bottom;
+    }
+  }
+  .mt-trigger-wrapper{
+    width: 250px !important;
+    font-size: 12px;
+    overflow: visible;
+    .mt-trigger{
+      overflow: inherit;
+    }
+    .trigger-content {
+      padding: 10px;
+      line-height: 1.5;
+      word-break: break-all;
+      .mt-spin {
+        padding: 40px 0;
+      }
+    }
+    .trigger-arrow {
+      width: 16px;
+      height: 16px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: transparent #ddd  transparent transparent;
+      position: absolute;
+      bottom: 10px;
+      left: -17px;
+      margin: auto;
+      em {
+        width: 16px;
+        height: 16px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent #fff transparent transparent;
+        margin-left: -7px;
+        margin-top: -8px;
+        position: absolute;
+      }
+    }
+  }
+
+}
+.trigger-select-demo{
+  height: 200px;
+  border: 1px solid #ddd;
+  overflow: auto;
+  &-content{
+    height: 330px;
+  }
+  .content-box{
+    display: inline-block;
+    margin:140px 10px 0 20px;
+    input{
+      padding:5px;
+    }
+  }
+  .mt-trigger>ul>li{
+    padding:0 5px;
+    height: 30px;
+    line-height: 30px;
+    &:hover{
+      cursor: pointer;
+      background-color: #dbeefe;
+    }
+  }
+}
+.trigger-date-demo{
+  .content-box{
+    .mt-btn{
+      margin-right: 10px;
+    }
+  }
+
+}
+.trigger-confirm-demo{
+  .mt-table .table-action{
+    a{
+      display: inline-block;
+      + a {
+        margin-left: 10px;
+      }
+    }
+  }
+  .mt-trigger-wrapper{
+    .mt-trigger{
+      border-radius: 5px;
+      overflow: visible;
+    }
+    .trigger-arrow {
+      width: 16px;
+      height: 16px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: #ddd transparent transparent transparent;
+      position: absolute;
+      left: 90px;
+      bottom: -16px;
+      margin: auto;
+      em {
+        width: 16px;
+        height: 16px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: #fff transparent transparent transparent;
+        margin-left: -8px;
+        margin-top: -9px;
+        position: absolute;
+      }
+    }
+  }
+}
+
+.trigger-content{
+  text-align: center;
+  width: 200px;
+  padding: 10px;
+  margin: auto;
+  .mt-btn{
+    margin: 0 10px;
+  }
+}
+.dialog-trigger {
+  background-color: rgba(0,0,0,.5);
+  .dialog-trigger-mask {
+    height: 100%;
+    overflow-y: auto;
+    text-align: center;
+    &:before,
+    &:after {
+      content: ' ';
+      display: inline-block;
+      height: 100%;
+      margin-left: -.25em;
+      vertical-align: middle;
+    }
+  }
+  .trigger-content {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #fff;
+    margin: 30px;
+  }
+}
+
+.source-node {
+  padding: 10px;
+  width: 300px;
+}

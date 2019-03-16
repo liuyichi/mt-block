@@ -1,0 +1,38 @@
+@import '../../style/themes/default';
+
+$triggerCls: mt-trigger;
+
+.#{$triggerCls} {
+  &-wrapper {
+    position: relative;
+  }
+  position: absolute;
+  left:-9999px;
+  top:-9999px;
+  background: $background-color-white;
+  z-index: $zindex-back-top;
+  overflow: hidden;
+  border: 1px solid $border-color-base;
+  border-radius: $border-radius-base;
+  box-shadow: $shadow-surround;
+  &-invisible {
+    top:-9999px !important;
+    left:-9999px !important;
+  }
+  &-useCssRight {
+    left:auto;
+    right:-9999px;
+    &.#{$triggerCls}-invisible {
+      left:auto !important;
+      right:-9999px !important;
+    }
+  }
+  &-useCssBottom {
+    top:auto;
+    bottom:-9999px;
+    &.#{$triggerCls}-invisible {
+      top:auto !important;
+      bottom:-9999px !important;
+    }
+  }
+}

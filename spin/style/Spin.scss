@@ -1,0 +1,65 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$prefix: $prefix-cls + '-spin';
+
+.#{$prefix} {
+  > i {
+    display: none;
+    vertical-align: top;
+  }
+
+  &_masked {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    text-align: center;
+    white-space: nowrap;
+    background: rgba(255,255,255,.9);
+    > i {
+      vertical-align: middle;
+    }
+  }
+  &_masked:before,
+  &_masked:after {
+    content: ' ';
+    display: inline-block;
+    height: 100%;
+    margin-left: -0.25em;
+    vertical-align: middle;
+  }
+
+
+  &_type-bounce-delay {
+    display: inline-block;
+    font-size: 12px;
+    > :nth-child(-n+3) {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background: $primary-color;
+      border-radius: 50%;
+      animation: #{$prefix}_bounce-delay 1.4s infinite ease-in-out both;
+      &:not(:last-child) {
+        margin-right: 0.4em;
+      }
+    }
+    > :nth-child(1) {
+      animation-delay: -0.32s;
+    }
+    > :nth-child(2) {
+      animation-delay: -0.16s;
+    }
+  }
+}
+
+@keyframes #{$prefix}_bounce-delay {
+  0%, 80%, 100% {
+    transform: scale(0);
+  } 40% {
+    transform: scale(1.0);
+  }
+}

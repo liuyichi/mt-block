@@ -1,0 +1,5 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./mixin";
+
+@include checkboxFn("#{$prefix-cls}-checkbox");

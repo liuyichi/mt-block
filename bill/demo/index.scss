@@ -1,0 +1,63 @@
+.bill-basic-demo {
+  width: 500px !important;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #eee;
+  font-size: 14px;
+}
+
+.bill-custom-field-demo{
+  width: 650px !important;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #eee;
+  font-size: 14px;
+  .btn-save{
+    margin: 0 auto;
+    display: block;
+  }
+  .props-add-btn{
+    float: right;
+    margin-bottom: 2px;
+  }
+  .mt-table-clearfix{
+    clear: both;
+  }
+}
+.bill-complex1-demo {
+  .operate-type{
+    margin-bottom: 20px;
+    .mt-radio-group{
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+  .bill-content{
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    .props-table{
+      .mt-table-clearfix{
+        margin:10px 0;
+      }
+    }
+    .edit-panel{
+      text-align: right;
+    }
+    .save-group{
+      text-align: right;
+      .mt-btn{
+        margin-right: 20px;
+      }
+    }
+  }
+  .info-bill {
+    position: relative;
+    .edit-panel {
+      position: absolute;
+      top: -30px;
+      right: 0;
+    }
+  }
+}

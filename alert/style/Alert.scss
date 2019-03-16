@@ -1,0 +1,74 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$prefix: $prefix-cls + '-alert';
+
+/* TODO: 调整文字的垂直位置 */
+
+.#{$prefix} {
+  position: relative;
+  min-height: 40px;
+  padding: 9px;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  border-radius: $border-radius-base;
+  border: 1px solid transparent;
+}
+
+.#{$prefix}_icon {
+  position: absolute;
+  left: 19px;
+  font-size: 16px;
+  line-height: 10px;
+  top: 10px;
+  margin: 1px 0;
+  > .mt-icon {
+    vertical-align: top;
+  }
+}
+
+.#{$prefix}_close {
+  position: absolute;
+  right: 9px;
+  cursor: pointer;
+}
+
+.#{$prefix}_body {
+  padding-left: 34px;
+  padding-right: 32px;
+  overflow: auto;
+  zoom: 1;
+}
+
+.#{$prefix}_title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.#{$prefix}_content {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #999999;
+}
+
+@mixin alert-color($color) {
+  color: $color;
+  background-color:  tint($color, 85%);
+  border-color: tint($color, 76%);
+  &:hover {
+    background-color:  tint($color, 90%);
+  }
+}
+.#{$prefix}_type-info {
+  @include alert-color($primary-color);
+}
+.#{$prefix}_type-success {
+  @include alert-color($success-color);
+}
+.#{$prefix}_type-warning {
+  @include alert-color($warning-color);
+}
+.#{$prefix}_type-error {
+  @include alert-color($error-color);
+}
+

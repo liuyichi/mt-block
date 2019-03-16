@@ -1,0 +1,120 @@
+.demo-draggable, .demo-droppable {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  height: 500px;
+  border: 1px dashed darkgrey;
+  &__item {
+    padding: 4px;
+    margin: 4px;
+  }
+}
+
+.demo-draggable {
+  overflow: auto;
+  .mt-draggable__item {
+    background: pink;
+    .drag-mark {
+      cursor: move;
+      cursor: -webkit-grabbing;
+    }
+  }
+}
+
+.demo-droppable {
+  .mt-draggable__item {
+    background: lightblue;
+  }
+}
+
+.draggable-demo {
+  .mt-draggable {
+    &__ghost {
+      color: red;
+    }
+    &__chosen {
+      background: greenyellow;
+    }
+    &__drag {
+      border: 1px solid grey;
+    }
+    &__fallback {
+      border-style: dashed;
+    }
+  }
+  &__operation {
+    margin-top: 20px;
+  }
+}
+
+.demo-form {
+  &__fields, &__custom-orders {
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 0 1px #ddd;
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 2px;
+    &__title {
+      padding: 5px;
+      font-weight: bold;
+      border-bottom: 1px solid #ececec;
+      background: #f5f5f5;
+    }
+  }
+  &__fields {
+    &__list-item {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+      line-height: 34px;
+      text-align: center;
+      border-right: 1px solid #ececec;
+      &:hover {
+        cursor: move;
+      }
+      &--dragging {
+        border: 1px solid #ececed;
+        padding: 4px;
+        background-color: #fff;
+        color: #333;
+      }
+    }
+  }
+  &__custom-orders {
+    width: 60%;
+    margin-left: 10%;
+    &__list {
+      min-height: 150px;
+      padding: 10px 4px;
+    }
+    &__list-item {
+      padding: 12px 15px 12px 20px;
+      border: 1px solid transparent;
+      &:hover {
+        cursor: pointer;
+        border: 1px dashed #ccc;
+      }
+      &--dragging {
+        border: 1px dashed #ccc;
+        background-color: #efefef;
+      }
+    }
+    .demo-form__fields__list-item--ghost, .demo-form__custom-orders__list-item--ghost {
+      width: 100%;
+      height: 62px;
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        background: none repeat scroll 0 0 #FFFBEF;
+        border: 1px dashed #cdcdcd;
+      }
+    }
+  }
+}

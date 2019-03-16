@@ -1,0 +1,28 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$prefix: $prefix-cls + '-modal';
+
+.#{$prefix} {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
+  transform: translate3d(0, 0, 0);  // 避免嵌套的 fixed 元素在滚动的时候跳动 (eg: 华为H60-L01)
+}
+
+.#{$prefix}_mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;  // 使每个 Modal 内元素 z 轴独立
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  &:last-child {
+    background-color: rgba(0,0,0,.5);
+  }
+}

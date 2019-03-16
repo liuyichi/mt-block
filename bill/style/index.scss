@@ -1,0 +1,150 @@
+@import "../../style/themes/default";
+
+$billCls: #{$prefix-cls}-bill;
+
+.#{$billCls} {
+  width: 100%;
+  line-height: $line-height-base;
+  box-sizing: border-box;
+  &-form {
+    margin-bottom: 15px;
+    .form-header {
+      color: #333;
+      border-left: 3px solid #118bfb;
+      padding-left: 10px;
+      margin-bottom: 10px;
+      line-height: 1;
+      font-weight: 500;
+    }
+  }
+  &-item {
+    display: inline-block;
+    position: relative;
+    padding-right: 10px;
+    vertical-align: top;
+    margin: 10px 0;
+    min-height: $height-base;
+    // 必填
+    &.required {
+      .bill-item-label {
+        &:before {
+          content: '*';
+          color: $error-color;
+          font-size: $font-size-sm;
+          padding-right: 5px;
+          vertical-align: inherit;
+        }
+      }
+    }
+    .has-explain {
+      position: absolute;
+    }
+    .bill-item-group{
+      position: relative;
+      display: block;
+      border-collapse: separate;
+      width: 100%;
+      .ant-checkbox-group,.ant-radio-group{
+        margin-top: 5px;
+      }
+    }
+    .bill-item-label{
+      position: absolute;
+      text-align: left;
+      width: 8em;
+      display: inline-block;
+      max-width: 100%;
+      vertical-align: middle;
+      top: 8px;
+      padding-right: 2px;
+      color: #333;
+      z-index: 2;
+      &:after {
+        content: "：";
+      }
+      + .bill-item-element {
+        padding-left: 8em;
+      }
+    }
+    .bill-item-element {
+      display: block;
+      position: relative;
+      width: 100%;
+      vertical-align: middle;
+      &-addon .bill-item-content {
+        width: 100%;
+        display: table-cell;
+      }
+    }
+    .bill-item-addon {
+      vertical-align: top;
+      &-before {
+        display: table-cell;
+        padding-right: 5px;
+      }
+      &-after {
+        display: table-cell;
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .alignment-right{
+    .bill-item-label{
+      text-align: right;
+    }
+  }
+  .alignment-top{
+    .bill-item-label{
+      position: relative;
+      top: 0;
+      + .bill-item-element {
+        padding-left: 0;
+      }
+    }
+  }
+  .bill-item-group-full{
+    width: 100% !important;
+  }
+  .bill-item-group{
+    .ant-calendar-picker{
+      width: 100%;
+    }
+  }
+  &-column-1 &-item {
+    width: 100%;
+  }
+  &-column-2 &-item {
+    width: 50%;
+  }
+  &-column-3 &-item {
+    width: 33%;
+  }
+  &-sm {
+    .alignment-left, .alignment-right {
+      .bill-item-label {
+        top: 4px;
+      }
+    }
+    .mt-bill-item {
+      min-height: $height-sm;
+    }
+    .bill-item-label {
+      font-size: $font-size-sm;
+    }
+    .bill-item-element-addon {
+      font-size: $font-size-sm;
+    }
+  }
+  &-view {
+    .#{$billCls}-item {
+      margin: 2px 0;
+      .bill-item-label {
+        color: #999;
+      }
+      .bill-item-element {
+        color: #333;
+      }
+    }
+  }
+}

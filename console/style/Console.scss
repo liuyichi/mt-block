@@ -1,0 +1,10 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$prefix: $prefix-cls + '-console';
+
+.#{$prefix} {
+  > *:not(:last-child) {
+    margin-right: 5px;
+  }
+}

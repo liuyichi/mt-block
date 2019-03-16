@@ -1,0 +1,32 @@
+.mt-log {
+  .mt-tabs__nav .mt-tabs__nav-item:first-child {
+    .mt-timeline-label_head_default:before {
+      border-color: #118bfb;
+      background-color: #fff;
+      width: 14px;
+      height: 14px;
+      left: -1px;
+      top: 1px;
+    }
+  }
+  .mt-timeline-label {
+    &_left,
+    &_right {
+      font-size: 14px;
+    }
+  }
+  .mt-timeline-label_left {
+    padding-right: 10px;
+    font-family: monospace, monospace;
+    font-size: 1em;
+    width: auto;
+    text-align: right;
+  }
+  .mt-timeline-label_right {
+    padding-left: 10px;
+    pre {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

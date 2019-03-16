@@ -1,0 +1,202 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$uploadCls: 'mt-upload';
+$listItemCls: 'mt-upload-item';
+$iconCls: $iconfont-css-prefix;
+$background-color-hover: #f6f6f6;
+
+.#{$uploadCls} {
+  width: 100%;
+  font-size: $font-size-base;
+
+  &.has-error {
+    .#{$uploadCls}-explain {
+      color: $error-color;
+      font-size: $font-size-sm;
+      margin-top: 2px;
+    }
+    .#{$uploadCls}-append-desc,
+    .#{$uploadCls}-append-btn,
+    .#{$uploadCls}-dropzone {
+      border-color: $error-color;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+  // 文件列表
+  > ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    > li {
+      line-height: $height-base;
+      border-radius: 2px;
+      padding: 0 10px;
+      &:hover {
+        background-color: $background-color-hover;
+        .#{$listItemCls}-right .#{$listItemCls}-remove {
+          visibility: visible;
+        }
+      }
+      &:last-child {
+        margin-bottom: 10px;
+      }
+      a {
+        width: 100%;
+        color: $text-color;
+        text-decoration: none;
+        &:hover {
+          .#{$listItemCls}-name {
+            color: $primary-color;
+          }
+        }
+      }
+      .#{$listItemCls}-name {
+        color: #333;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .#{$listItemCls}-right {
+        float: right;
+        > span {
+          display: inline-block;
+        }
+        .#{$listItemCls}-owner,
+        .#{$listItemCls}-time {
+          display: inline-block;
+          vertical-align: top;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: visible;
+        }
+        .#{$listItemCls}-owner {
+          width: 56px;
+          text-align: center;
+          margin: 0 10px;
+        }
+        .#{$listItemCls}-time {
+          width: 70px;
+          text-align: center;
+        }
+        .#{$listItemCls}-status {
+          padding-left: 5px;
+          .#{$iconCls} {
+            padding-right: 5px;
+            font-weight: bold;
+          }
+          &-success {
+            color: $success-color;
+          }
+          &-failed {
+            color: $error-color;
+          }
+          &-uploading {
+
+          }
+        }
+        .#{$listItemCls}-remove {
+          visibility: hidden;
+          display: inline-block;
+          padding-left: 10px;
+          line-height: $height-base;
+          color: #aaa;
+          vertical-align: top;
+          cursor: pointer;
+          &:hover {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  // 非拖拽上传区域
+  .#{$uploadCls}-append-btn {
+    border-radius: 0 $border-radius-base $border-radius-base 0;
+    display: table-cell;
+    color: $text-color;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  &-append {
+    display: table;
+    width: 100%;
+    &-desc {
+      cursor: pointer;
+      border: 1px solid $border-color-base;
+      border-right: 0;
+      display: table-cell;
+      padding: 0 16px;
+      height: $height-base;
+      line-height: $line-height-base;
+      vertical-align: middle;
+      border-radius: $border-radius-base 0 0 $border-radius-base;
+      color: $text-aide-color;
+      width: 100%;
+    }
+    &-disabled &-desc {
+      cursor: $cursor-disabled;
+    }
+    &-disabled {
+      .mt-btn:hover {
+        color: $text-color;
+      }
+    }
+  }
+
+  // 拖拽区域
+  &-dropzone {
+    text-align: center;
+    border: 1px $border-color-base dashed;
+    border-radius: $border-radius-base;
+    padding: 30px 0 20px;
+    cursor: pointer;
+    &:hover {
+      border-color: $primary-color;
+    }
+    &:hover &-append {
+      color: $primary-color;
+    }
+    &-append {
+      font-size: $font-size-base * 2;
+      color: #ddd;
+      margin-bottom: 10px;
+    }
+    &-title {
+      color: $text-aide-color;
+    }
+    &-disabled {
+      cursor: $cursor-disabled;
+      &:hover {
+        border-color: $border-color-base;
+      }
+      &:hover .#{$uploadCls}-dropzone-append {
+        color: #ddd;
+      }
+    }
+  }
+
+  &-sm &-append-desc{
+    height: $height-sm;
+    padding: 0 6px;
+  }
+  &-sm {
+    font-size: $font-size-sm;
+    > ul > li {
+      padding: 0 5px;
+      line-height: $height-sm;
+      .#{$listItemCls}-right .#{$listItemCls}-remove {
+        line-height: $height-sm;
+        padding-left: 5px;
+      }
+      &:last-child {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

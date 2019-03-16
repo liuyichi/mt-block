@@ -1,0 +1,81 @@
+.input-basic-demo,.input-state-demo,.input-validator-demo,.input-handler-demo,
+.input-tag-demo,.input-textarea-demo,.input-clear-demo,.input-number-demo{
+  .input-group{
+    position: relative;
+    display: block;
+    border-collapse: separate;
+    width: 100%;
+    max-width: 500px;
+    margin: 10px;
+  }
+  .input-group-label{
+    position: absolute;
+    text-align: right;
+    width: 8em;
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: middle;
+    top: 8px;
+    padding-right: 2px;
+    color: #333;
+    z-index: 2;
+  }
+  .input-group-label:after{
+    content: "\FF1A";
+  }
+  .input-group-input{
+    display: block;
+    position: relative;
+    padding-left: 8em;
+    width: 500px;
+    vertical-align: middle;
+  }
+  .mt-input-disabled{
+    float: none !important;
+  }
+}
+.input-number-demo,.input-tag-demo .input-group.extend,.input-tag-demo .input-group.normal .number{
+  .mt-input-group-addon{
+    background: none;
+    border: none;
+    padding:0 0 0 10px;
+  }
+}
+.input-tag-demo{
+  .input-group{
+    width: 30%;
+    min-width: 240px;
+    margin-right: 10px;
+    .input-group-input .mt-input{
+      margin-bottom: 10px;
+    }
+    &.normal{
+      .number .mt-input-group-addon{
+        background: none;
+        border: none;
+        padding:0 0 0 10px;
+      }
+    }
+    &.extend{
+      .mt-input-group-addon{
+        background: none;
+        border: none;
+        padding:0 0 0 10px;
+      }
+    }
+  }
+}
+.input-basic-demo{
+  .custom-input .custom-input-container input{
+    height: 36px;
+  }
+}
+.input-validator-demo{
+  .input-group-label:before{
+    content: '*';
+    color: #ff5d4a;
+    font-size: 12px;
+    padding-right: 5px;
+    vertical-align: inherit;
+  }
+}

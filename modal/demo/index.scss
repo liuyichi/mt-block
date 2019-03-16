@@ -1,0 +1,43 @@
+.block-modal-basic-demo{
+  width: 650px;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  .mt-dialog{
+    height: 100%;
+    overflow: auto;
+    .mt-dialog_title{
+      position: absolute;
+      width: 100%;
+      z-index: 10;
+    }
+    .mt-dialog_content{
+      position: relative;
+      margin: 60px 30px 0 ;
+      padding-bottom: 70px;
+      z-index: 1;
+    }
+    .mt-dialog_buttons{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 0;
+      width: 100%;
+      padding: 15px;
+      background: #f8f8f8;
+      z-index: 10;
+    }
+    .page-props-add-btn{
+      float: right;
+      margin-bottom: 2px;
+    }
+    .mt-table-clearfix{
+      clear: both;
+    }
+  }
+}
+.block-modal-demo{
+  .mt-btn{
+    margin: 10px;
+  }
+}

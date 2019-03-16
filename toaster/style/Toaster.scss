@@ -1,0 +1,23 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$prefix: $prefix-cls + '-toaster';
+
+.#{$prefix} {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 600;
+  @media (max-width: 768px) {
+    left: 24px;
+  }
+}
+
+.#{$prefix}_alert {
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}

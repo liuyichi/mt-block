@@ -1,0 +1,52 @@
+{
+  "code":"complex_bill",
+  "column":"1",
+  "alignment":"right",
+  "forms":[
+    {
+      "code":"info",
+      "label":"基本信息",
+      "fields":[
+        {
+          "code":"info",
+          "label":"基本信息",
+          "type":"custom"
+        }
+      ]
+    },
+    {
+      "code":"props",
+      "label":"属性",
+      "fields":[
+        {
+          "code":"attributeList",
+          "label":"属性",
+          "type":"custom",
+          "columns":[
+            {
+              "label": "属性Key",
+              "code": "key",
+              "width":120
+            },
+            {
+              "label": "属性Value",
+              "code": "value",
+              "width":120
+            },
+            {
+              "label": "属性描述",
+              "code": "desc",
+              "width":200
+            },
+            {
+              "label": "操作",
+              "code": "operate",
+              "width":50
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events":[]
+}

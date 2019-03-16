@@ -1,0 +1,15 @@
+@import "../../style/mixins/index";
+
+@mixin antTreeSwitcherIcon() {
+  position: relative;
+  &:before {
+    @include iconfont-size-under-12px(7px);
+    display: inline-block;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 4px;
+    color: #aaa;
+    transition: transform .3s ease;
+  }
+}

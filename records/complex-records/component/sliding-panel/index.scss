@@ -1,0 +1,33 @@
+@import "../../../../style/themes/default";
+
+//防止与其他组件的样式的污染
+$prefixCls: 'mt-complex-records__sliding-panel';
+
+.#{$prefixCls}.sliding-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 400;
+
+  .sliding-panel__mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .sliding-panel__content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 440px;
+    background-color: $background-color-white;
+    box-shadow: -2px 0 4px 0 rgba(0, 0, 0, .2);
+    border-left: 1px solid #ddd;
+  }
+}

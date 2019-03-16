@@ -1,0 +1,7 @@
+{
+  "idField":"deptId",
+  "showField":"deptName",
+  "leafField":"leaf",
+  "parentIdField": "parentId",
+  "tpl": "{{deptName}}"
+}

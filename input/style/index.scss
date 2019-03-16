@@ -1,0 +1,14 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./mixin";
+
+$input-prefix-cls: #{$prefix-cls}-input;
+
+.#{$input-prefix-cls} {
+  @include input(#{$input-prefix-cls});
+}
+
+//== Style for input-group: input with label, with button or dropdown...
+.#{$input-prefix-cls}-group {
+  @include input-group(#{$input-prefix-cls});
+}

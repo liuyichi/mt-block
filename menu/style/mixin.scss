@@ -1,0 +1,7 @@
+@import "../../style/mixins/index";
+
+@mixin effect() {
+  animation-duration: .3s;
+  animation-fill-mode: both;
+  transform-origin: 0 0;
+}

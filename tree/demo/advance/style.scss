@@ -1,0 +1,40 @@
+
+.demo-tree-advance{
+  background: #fff;
+  padding: 5px;
+
+  .mt-tree li{
+    padding: 8px 0 0;
+    .mt-tree-node-selected{
+      background: #fff;
+      color:#49a9ee;
+    }
+  }
+  .mt-tree li a{
+    &:hover{
+      text-decoration:none;
+      background: #fff;
+      .dept-operate{
+        display: inline-block;
+      }
+    }
+
+  }
+  .dept-name-box{
+    padding:5px 12px;
+    border-radius:100px;
+    border: 1px solid rgba(204,204,204,40) ;
+    &:hover{
+      text-decoration:none;
+      background: #e7f3ff;
+    }
+  }
+
+  .dept-operate{
+    display: none;
+  }
+
+  .operate{
+    text-align: left;
+  }
+}

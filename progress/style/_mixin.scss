@@ -1,0 +1,338 @@
+$btn-font-weight        : normal;
+
+$btn-default-color      : $text-color;
+$btn-default-bg         : $background-color-white;
+$btn-default-border     : $border-color-base;
+
+$btn-info-color         : $background-color-white;
+$btn-info-bg            : $primary-color;
+
+$btn-success-color      : $background-color-white;
+$btn-success-bg         : $success-color;
+$btn-success-border     : $success-color;
+
+$btn-warning-color      : $background-color-white;
+$btn-warning-bg         : $warning-color;
+$btn-warning-border     : $warning-color;
+
+$btn-dangerous-color    : $background-color-white;
+$btn-dangerous-bg       : $error-color;
+$btn-dangerous-border   : $error-color;
+
+$btn-disable-color      : $background-color-white;
+$btn-disable-bg         : $border-color-base;
+$btn-disable-border     : $border-color-base;
+
+$btn-padding-base       : 6px 24px;
+$btn-padding-lg         : 9px 36px;
+$btn-padding-sm         : 2px 16px;
+
+$btn-circle-size        : 36px;
+$btn-circle-size-lg     : 48px;
+$btn-circle-size-sm     : 24px;
+
+// mixins for button
+// ------------------------
+@mixin button-size($padding, $font-size, $border-radius) {
+  padding: $padding;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+@mixin button-variant($btnClassName, $color, $background, $border) {
+  @include button-color($btnClassName, $color, $background, $border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, tint($color, 15%), tint($background, 15%), tint($border, 15%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, shade($color, 5%), shade($background, 5%), shade($background, 5%));
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      @include button-color($btnClassName, $btn-disable-color, $btn-disable-bg, $btn-disable-border);
+    }
+  }
+}
+
+@mixin button-color($btnClassName, $color, $background, $border) {
+  > .#{$iconfont-css-prefix} {
+    color: $color;
+  }
+  // 无背景色无边框
+  &.#{$btnClassName}-circle-outline,
+  &.#{$btnClassName}-no-outline {
+    color: $border;
+    > .#{$iconfont-css-prefix} {
+      color: $border;
+    }
+  }
+  // 圆形无底色
+  &.#{$btnClassName}-circle-outline {
+    background-color: $btn-default-bg;
+  }
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+  // a inside Button which only work in Chrome
+  // http://stackoverflow.com/a/17253457
+  > a:only-child {
+    color: currentColor;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: transparent;
+    }
+  }
+}
+
+@mixin button-group-base($btnClassName) {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  > .#{$btnClassName} {
+    position: relative;
+    float: left;
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+  }
+
+  // size
+  &-lg > .#{$btnClassName} {
+    @include button-size($btn-padding-lg, $font-size-lg, $border-radius-base);
+  }
+
+  &-sm > .#{$btnClassName} {
+    @include button-size($btn-padding-sm, $font-size-base, $border-radius-base);
+    > .#{$iconfont-css-prefix} {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// Base styles of buttons
+// --------------------------------------------------
+@mixin btn() {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  // outline: none;
+  white-space: nowrap;
+  line-height: $line-height-base;
+  @include button-size($btn-padding-base, $font-size-base, $border-radius-base);
+  user-select: none;
+  transition: all .3s $ease-in-out;
+  transform: translate3d(0, 0, 0);
+
+  > .#{$iconfont-css-prefix} {
+    line-height: 1;
+    color: $icon-color;
+    transition: all .3s $ease-in-out;
+  }
+
+  &,
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  &:not([disabled]):hover {
+    text-decoration: none;
+  }
+
+  &:not([disabled]):active {
+    outline: 0;
+    transition: none;
+  }
+
+  &.disabled,
+  &[disabled] {
+    cursor: $cursor-disabled;
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  &-lg {
+    @include button-size($btn-padding-lg, $font-size-lg, $border-radius-base);
+  }
+
+  &-sm {
+    @include button-size($btn-padding-sm, $font-size-sm, $border-radius-base);
+    line-height: 1.5;
+  }
+}
+
+// default button style
+@mixin btn-default($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-default-color, $btn-default-bg, $btn-default-border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, tint($primary-color, 15%), white, tint($primary-color, 15%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, shade($primary-color, 5%), white, shade($primary-color, 5%));
+  }
+  &.#{$btnClassName}-no-outline > .#{$iconfont-css-prefix},
+  &.#{$btnClassName}-circle-outline > .#{$iconfont-css-prefix},
+  > .#{$iconfont-css-prefix} {
+    color: $icon-color;
+  }
+  &.#{$btnClassName}-no-outline {
+    color: $text-color;
+  }
+}
+
+// info button style
+@mixin btn-info($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-info-color, $btn-info-bg, $primary-color);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, $btn-info-color, tint($primary-color, 15%), tint($primary-color, 15%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, $btn-info-color, shade($primary-color, 15%), shade($primary-color, 15%));
+  }
+}
+
+// success button style
+@mixin btn-success($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-success-color, $btn-success-bg, $btn-success-border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, $btn-success-color, tint($success-color, 15%), tint($success-color, 15%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, $btn-success-color, shade($success-color, 5%), shade($success-color, 5%));
+  }
+}
+
+// warning button style
+@mixin btn-warning($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-warning-color, $btn-warning-bg, $btn-warning-border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, $btn-warning-color, tint($warning-color, 15%), tint($warning-color, 15%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, $btn-warning-color, shade($warning-color, 5%), shade($warning-color, 5%));
+  }
+}
+
+// dangerous button style
+@mixin btn-dangerous($btnClassName: btn) {
+  @include button-variant($btnClassName, $btn-dangerous-color, $btn-dangerous-bg, $btn-dangerous-border);
+
+  &:hover,
+  &:focus {
+    @include button-color($btnClassName, $btn-dangerous-color, tint($error-color, 15%), tint($error-color, 15%));
+  }
+  &:active,
+  &.active {
+    @include button-color($btnClassName, $btn-dangerous-color, shade($error-color, 5%), shade($error-color, 5%));
+  }
+}
+
+// circle button: the content only contains icon
+@mixin btn-circle($btnClassName: btn) {
+  @include square($btn-circle-size);
+  @include button-size(0, $font-size-base + 2, 50%);
+
+  &.#{$btnClassName}-lg {
+    @include square($btn-circle-size-lg);
+    @include button-size(0, $font-size-lg + 2, 50%);
+  }
+
+  &.#{$btnClassName}-sm {
+    @include square($btn-circle-size-sm);
+    @include button-size(0, $font-size-base, 50%);
+  }
+}
+
+// Horizontal button groups styl
+// --------------------------------------------------
+@mixin btn-group($btnClassName: btn) {
+  @include button-group-base($btnClassName);
+
+  .#{$btnClassName} + .#{$btnClassName},
+  .#{$btnClassName} + &,
+  & + .#{$btnClassName},
+  & + & {
+    margin-left: -1px;
+  }
+
+  .#{$btnClassName}:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  > .#{$btnClassName}:first-child {
+    margin-left: 0;
+    &:not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  > .#{$btnClassName}:last-child:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  & > & {
+    float: left;
+  }
+
+  & > &:not(:first-child):not(:last-child) > .#{$btnClassName} {
+    border-radius: 0;
+  }
+
+  & > &:first-child:not(:last-child) {
+    > .#{$btnClassName}:last-child {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      padding-right: 8px;
+    }
+  }
+
+  & > &:last-child:not(:first-child) > .#{$btnClassName}:first-child {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding-left: 8px;
+  }
+  .#{$btnClassName}[disabled] {
+    color: $border-color-base;
+    background-color: $background-color-base;
+  }
+}

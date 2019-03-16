@@ -1,0 +1,173 @@
+@import '../../style/themes/default.scss';
+
+.date-picker-test {
+  section {
+    article > div {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+      width: 45%;
+    }
+  }
+  margin-bottom: 100px;
+}
+
+.date-picker-demo {
+  > p > em {
+    font-style: normal;
+    color: $primary-color;
+  }
+  > .base-demo {
+    white-space: nowrap;
+    > table {
+      width: 49%;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      min-width: 400px;
+      display: inline-table;
+      margin-right: 2%;
+      > tbody > tr {
+        &:first-child > td {
+          padding-top: 28px;
+          > label {
+            top: 40px;
+          }
+        }
+        &:last-child > td {
+          padding-bottom: 28px;
+        }
+        > td {
+          text-align: center;
+          white-space: nowrap;
+          padding: 18px;
+          position: relative;
+          &:first-child {
+            color: $text-aide-color;
+            width: 128px;
+            border-right: 1px dashed #ddd;
+          }
+          > label {
+            color: #333;
+            position: absolute;
+            left: 18px;
+            top: 29px;
+            &.required:before {
+              content: "*";
+              color: $error-color;
+            }
+          }
+          > .date-picker {
+            padding-left: 80px;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  article > div {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+  }
+}
+
+.date-picker-basic-demo {
+  .date-picker-demo-label {
+    line-height: 36px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    + div {
+      padding-left: 76px;
+      width: 50%;
+      min-width: 600px;
+      max-width: 800px;
+      > div {
+        width: 50%;
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: 10px;
+      }
+    }
+  }
+  > div {
+    margin: 10px 0;
+    position: relative;
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.date-picker-field-mode-demo{
+  > div {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    position: relative;
+    > label {
+      line-height: 36px;
+      margin-right: 10px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    > div {
+      padding: 0 10px 0 66px;
+      > div {
+        margin: 10px 0;
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.date-picker-validate-demo {
+  > div {
+    width: 50%;
+    position: relative;
+    margin-bottom: 10px;
+    > label {
+      line-height: 36px;
+      margin-right: 10px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    > div {
+      padding: 0 10px 0 76px;
+    }
+  }
+}
+
+.date-picker-calendar-demo {
+  table {
+    border-collapse: separate;
+    border-spacing: 20px 10px;
+    text-align: center;
+  }
+}
+
+.date-picker-event-demo {
+  > div {
+    margin: 10px 0;
+    position: relative;
+    > label {
+      line-height: 36px;
+      display: inline-block;
+      vertical-align: top;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    > div {
+      width: 50%;
+      display: inline-block;
+      vertical-align: top;
+      padding-left: 240px;
+    }
+  }
+}

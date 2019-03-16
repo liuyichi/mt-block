@@ -1,0 +1,18 @@
+@import "../../style/themes/default";
+@import "./mixin";
+
+$select-cls: #{$prefix-cls}-select;
+
+.#{$select-cls} {
+  @include select($select-cls);
+}
+.#{$select-cls}-dropdown {
+  @include dropdown(#{$select-cls});
+}
+
+.#{$select-cls}-multiple {
+  @include multiple(#{$select-cls}-multiple);
+}
+.#{$select-cls}-multiple-dropdown {
+  @include dropdown(#{$select-cls}-multiple);
+}

@@ -1,0 +1,15 @@
+.icon-demo {
+  li {
+    display: inline-block;
+    width: 200px;
+    margin-bottom: 40px;
+    > span {
+      display: block;
+      margin-top: 20px;
+      color: #999;
+    }
+    .mt-icon {
+      font-size: 20px;
+    }
+  }
+}

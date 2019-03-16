@@ -1,0 +1,20 @@
+.records-demo{
+  .mt-dialog{
+    width: 720px;
+  }
+}
+.complex-records-demo {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 20px;
+  &--simple {
+    padding-top: 2px;
+  }
+  .mt-complex-records__console__btn-list {
+    .mt-btn-default:first-child {
+      border-color: #118BFB;
+      &, & .block-icon {
+        color: #118BFB;
+      }
+    }
+  }
+}

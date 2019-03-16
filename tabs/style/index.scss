@@ -1,0 +1,457 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$prefixCls: #{$prefix-cls}-tabs;
+$containerCls: "> .#{$prefixCls}__tabBar-container";
+$containerPrefixCls : "#{$containerCls} .#{$prefixCls}";
+$contentCls: "> .#{$prefixCls}__content";
+$contentItemCls: "#{$contentCls} > .#{$prefixCls}__content-item";
+
+$page-btn-width: 28px;
+$page-btn-width-lg: 36px;
+$page-btn-width-sm: 24px;
+$height-lg: 48px;
+$background-color-disabled: #eee;
+$verticalBarWidth: 200px;
+
+.#{$prefixCls} {
+  position: relative;
+  /** 按钮的全局样式 **/
+  .mt-btn-clicked:after {
+    animation: none;
+  }
+
+  /** 标签区域 **/
+  #{$containerCls} {
+    border-bottom: 1px solid $border-color-base;
+    width: 100%;
+    position: relative;
+    &-extra > .#{$prefixCls}__tabBar {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &-extraRight > .#{$prefixCls}__extra {
+      float: right;
+      position: relative;
+      top: -1px;
+    }
+  }
+  #{$containerPrefixCls} {
+    /** 切页按钮 **/
+    &__prev,
+    &__next {
+      position: absolute;
+      padding: 0 6px;
+      bottom: 2px;
+      height: $height-base - 2;
+      background-color: $background-color-white !important;
+      border-radius: 0;
+      z-index: 2;
+      transition: none;
+    }
+    &__next {
+      right: 0;
+    }
+
+    &__extra {
+      padding-left: 10px;
+      display: inline-block;
+      background-color: $background-color-white;
+      vertical-align: bottom;
+    }
+    &__tabBar {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      margin-bottom: -1px;
+      &-scroll > .#{$prefixCls}__nav {
+        padding-left: $page-btn-width;
+        transition: transform .5s $ease-in-out;
+      }
+    }
+    &__ink-bar {
+      display: block;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      z-index: 1;
+      transform-origin: 0 0;
+      transition: transform .5s $ease-in-out;
+      background-color: $primary-color;
+    }
+    // 选项
+    &__nav-item {
+      display: inline-block;
+      padding: 0 10px;
+      white-space: nowrap;
+      vertical-align: text-bottom;
+      min-width: 100px;
+      text-align: center;
+      &:hover {
+        cursor: pointer;
+      }
+      &.no-icon {
+        padding: 0 20px;
+        text-align: center;
+      }
+      &.disabled {
+        cursor: $cursor-disabled;
+      }
+      &:not(.disabled).active,
+      &:not(.disabled):hover {
+        > div {
+          color: $primary-color;
+        }
+      }
+      &-title {
+        display: inline-block;
+        vertical-align: top;
+        color: $text-color;
+        font-weight: bold;
+        height: $height-base;
+        line-height: $height-base;
+        > i {
+          margin-right: 0.5em;
+        }
+      }
+      &-delete {
+        margin-left: 10px;
+        vertical-align: middle;
+        width: 1em;
+      }
+    }
+  }
+  // 选项卡内容
+  #{$contentItemCls} {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+
+  &:not(&--height) #{$containerCls} {
+    margin-bottom: 20px;
+  }
+  &--height #{$contentCls} {
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+/** 标签位置 **/
+.#{$prefixCls}--left,
+.#{$prefixCls}--right {
+  width: 100%;
+  overflow: hidden;
+  #{$containerCls},
+  #{$containerPrefixCls}__nav,
+  #{$contentCls} {
+    height: 100%;
+  }
+  #{$containerCls} {
+    width: $verticalBarWidth;
+    border-bottom-width: 0;
+    margin-bottom: 0;
+    background-color: #fff;
+    z-index: 10;
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+  #{$containerPrefixCls} {
+    &__tabBar {
+      width: 100% !important;
+      margin-bottom: 0;
+      &-scroll > .#{$prefixCls}__nav {
+        padding-left: 0;
+        padding-top: $page-btn-width;
+      }
+    }
+    &__ink-bar {
+      width: 2px;
+      bottom: auto;
+      top: 0;
+    }
+    &__nav-item,
+    &__extra {
+      display: block;
+      padding-left: 0;
+      text-align: center;
+    }
+    &__nav-item-title > .mt-btn {
+      word-break: break-all;
+      white-space: normal;
+    }
+    &__nav-item-title {
+      height: $height-base;
+    }
+    // 切页按钮
+    &__prev,
+    &__next {
+      bottom: auto;
+      height: $page-btn-width;
+      width: 100%;
+    }
+    &__next {
+      bottom: 0;
+    }
+  }
+
+  #{$contentCls} {
+    vertical-align: top;
+    padding: 10px 20px;
+    overflow-y: auto;
+  }
+
+  // 卡片模式
+  &.#{$prefixCls}--card #{$containerPrefixCls}__nav-item {
+    border-bottom-width: 1px;
+    padding: 0 10px;
+    &.active {
+      padding-bottom: 0;
+    }
+    &:not(:last-child) {
+      margin-bottom: 4px;
+      margin-right: 0;
+    }
+  }
+}
+.#{$prefixCls}--left {
+  #{$containerCls} {
+    float: left;
+    border-right: 1px $border-color-base solid;
+  }
+  #{$containerPrefixCls} {
+    &__tabBar {
+      margin-left: 1px;
+    }
+    &__ink-bar {
+      right: 0;
+    }
+    &__prev,
+    &__next {
+      border-right: 1px solid $border-color-base;
+    }
+  }
+
+  // 卡片模式
+  &.#{$prefixCls}--card #{$containerPrefixCls} {
+    &__nav-item {
+      border-right-width: 0;
+      &.active {
+        padding-right: 11px;
+      }
+      &:not(.active) {
+        margin-right: 1px;
+      }
+    }
+  }
+}
+.#{$prefixCls}--right {
+  #{$containerCls} {
+    float: right;
+    border-left: 1px solid $border-color-base;
+  }
+  #{$containerPrefixCls} {
+    &__ink-bar {
+      left: 0;
+    }
+    &__tabBar {
+      margin-left: -1px;
+    }
+    &__prev,
+    &__next {
+      border-left: 1px solid $border-color-base;
+    }
+  }
+
+  // 卡片模式
+  &.#{$prefixCls}--card #{$containerPrefixCls} {
+    &__nav-item {
+      border-left-width: 0;
+      &.active {
+        padding-left: 11px;
+      }
+      &:not(.active) {
+        margin-left: 1px;
+      }
+    }
+  }
+}
+.#{$prefixCls}--height.#{$prefixCls}--top {
+  padding-top: $height-base + 20;
+  #{$containerCls} {
+    position: absolute;
+    top: 0;
+  }
+}
+.#{$prefixCls}--height.#{$prefixCls}--bottom {
+  padding-bottom: $height-base + 20;
+  #{$containerCls} {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+/** 标签风格 **/
+.#{$prefixCls}--default {
+  #{$containerPrefixCls} {
+    &__nav-item-title {
+      color: $text-color;
+      font-weight: normal;
+    }
+    &__nav-item.active {
+      position: relative;
+    }
+  }
+}
+.#{$prefixCls}--card {
+  #{$containerPrefixCls} {
+    &__ink-bar {
+      visibility: hidden;
+    }
+    &__nav-item {
+      border: 1px solid $border-color-base;
+      border-bottom-width: 0;
+      background-color: $background-color-base;
+      border-radius: 2px 2px 0 0;
+      vertical-align: text-top;
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
+      &.active {
+        background-color: $background-color-white;
+        position: relative;
+        color: $primary-color;
+        padding-bottom: 1px;
+      }
+      &.disabled {
+        background-color: $background-color-disabled;
+      }
+      &,
+      &-title {
+        font-weight: normal;
+        > .mt-btn {
+          height: $height-base - 2;
+        }
+      }
+      &-title {
+        height: $height-base - 2;
+      }
+    }
+  }
+}
+
+
+/** 标签尺寸 **/
+.#{$prefixCls}--lg {
+  &.#{$prefixCls}--height.#{$prefixCls}--top {
+    padding-top: $height-lg + 20;
+  }
+  &.#{$prefixCls}--height.#{$prefixCls}--bottom {
+    padding-bottom: $height-lg + 20;
+  }
+  #{$containerPrefixCls} {
+    &__prev,
+    &__next {
+      height: $height-lg - 2;
+    }
+    &__tabBar-scroll > .#{$prefixCls}__nav {
+      padding-left: $page-btn-width-lg;
+    }
+    &__nav-item {
+      font-size: $font-size-lg;
+    }
+    &__nav-item-title {
+      height: $height-lg;
+      line-height: $height-lg;
+    }
+  }
+  &.#{$prefixCls} {
+    &--card #{$containerPrefixCls}__nav-item {
+      &,
+      &-title {
+        > .mt-btn {
+          height: $height-lg - 2;
+        }
+      }
+      &-title {
+        height: $height-lg - 2;
+      }
+    }
+    &--left,
+    &--right {
+      #{$containerPrefixCls} {
+        &__prev,
+        &__next {
+          height: $page-btn-width-lg;
+        }
+        &__tabBar-scroll > .#{$prefixCls}__nav {
+          padding-top: $page-btn-width-lg;
+          padding-left: 0 !important;
+        }
+      }
+      &.#{$prefixCls}--card #{$containerPrefixCls}__nav-item-title {
+        height: $height-lg;
+      }
+    }
+  }
+}
+.#{$prefixCls}--sm {
+  &.#{$prefixCls}--height.#{$prefixCls}--top {
+    padding-top: $height-sm + 20;
+  }
+  &.#{$prefixCls}--height.#{$prefixCls}--bottom {
+    padding-bottom: $height-sm + 20;
+  }
+  #{$containerPrefixCls} {
+    &__prev,
+    &__next {
+      height: $height-sm - 2;
+    }
+    &__tabBar-scroll > .#{$prefixCls}__nav {
+      padding-left: $page-btn-width-sm;
+    }
+    &__nav-item {
+      font-size: $font-size-sm;
+    }
+    &__nav-item-title {
+      height: $height-sm;
+      line-height: $height-sm;
+    }
+  }
+  &.#{$prefixCls} {
+    &--card #{$containerPrefixCls}__nav-item {
+      &,
+      &-title {
+        > .mt-btn {
+          height: $height-sm - 2;
+        }
+      }
+      &.active {
+        height: $height-sm;
+      }
+      &-title {
+        height: $height-sm - 2;
+      }
+    }
+    &--left,
+    &--right {
+      #{$containerPrefixCls} {
+        &__prev,
+        &__next {
+          height: $page-btn-width-sm;
+        }
+        &__tabBar-scroll > .#{$prefixCls}__nav {
+          padding-top: $page-btn-width-sm;
+          padding-left: 0 !important;
+        }
+      }
+      &.#{$prefixCls}--card #{$containerPrefixCls}__nav-item-title {
+        height: $height-sm;
+      }
+    }
+  }
+}

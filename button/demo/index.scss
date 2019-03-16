@@ -1,0 +1,12 @@
+
+.button-demo {
+  .mt-btn{
+    margin: 10px;
+  }
+  .mt-btn-group{
+    margin: 10px;
+    .mt-btn{
+      margin: 0;
+    }
+  }
+}

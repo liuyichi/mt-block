@@ -1,0 +1,47 @@
+
+.upload-basic-demo,
+.upload-drag-demo {
+  .custom_field {
+    img {
+      width: 50px;
+      height: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+    .mt-upload-item,
+    .mt-upload-item-right {
+      line-height: 60px;
+    }
+  }
+  > ul {
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    > li {
+      border-bottom: 1px dashed #ddd;
+      display: table;
+      width: 100%;
+      &:last-child {
+        border-bottom: 0;
+      }
+      .left {
+        padding: 0 30px;
+        border-right: 1px dashed #ddd;
+        display: table-cell;
+        width: 20%;
+        vertical-align: middle;
+        text-align: center;
+      }
+      .right {
+        padding: 30px;
+        display: table-cell;
+        > label {
+          border-left: 3px solid #33D5B0;
+          padding-left: 10px;
+          margin-bottom: 30px;
+          display: block;
+        }
+      }
+    }
+  }
+}

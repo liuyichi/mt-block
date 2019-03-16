@@ -1,0 +1,54 @@
+.custom-header-demo{
+  .table-header-filter {
+    position: relative;
+    &__dropdown {
+      position: absolute;
+      left: 0;
+      top: 32px;
+      width: 180px;
+      box-shadow: 1px 1px 3px 0 rgba(123, 123, 123, .3);
+      background-color: #fff;
+      z-index: 5;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      padding: 4px;
+      input {
+        padding-right: 38px;
+      }
+      .mt-input-clearIcon {
+        padding: 0 2px;
+        margin: 2px 2px 2px 0;
+        right: 20px;
+      }
+    }
+
+    &__input-search-icon {
+      font-size: 16px;
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .mt-table-thead > tr > th .block-icon-filter.-active{
+    color: #118bfb;
+  }
+  .block-icon-filter{
+    vertical-align: -3px;
+  }
+}
+
+.dropdown-container{
+  padding: 7px;
+  li{
+    cursor: pointer;
+    &:hover{
+      background: #e7f3ff;
+    }
+  }
+}
+
+

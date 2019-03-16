@@ -1,0 +1,26 @@
+@import "../../style/themes/default";
+
+.block-icon {  // FIXME
+  display: inline-block;
+}
+
+.mt-icon {
+  display: inline-block;
+  width: 1em;
+}
+
+.mt-icon_preset-question {
+  color: $warning-color;
+}
+.mt-icon_preset-info {
+  color: $primary-color;
+}
+.mt-icon_preset-success {
+  color: $success-color;
+}
+.mt-icon_preset-warning {
+  color: $warning-color;
+}
+.mt-icon_preset-error {
+  color: $error-color;
+}

@@ -1,0 +1,75 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+
+$prefix: $prefix-cls + '-records';
+$prefix-console-button: $prefix-cls + '-console-button';
+
+.#{$prefix} {
+  & {
+    background: #fff;
+    padding: 16px;
+  
+    .#{$prefix-cls}-icon {
+      box-sizing: content-box;
+      display: inline-block;
+      min-width: 1em;
+    }
+  }
+  
+  &_filter-bill {
+    padding: 16px;
+    font-size: 12px;
+    background: #f8f8f8;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    &.-empty {
+      display: none;
+    }
+    .alignment-left,
+    .alignment-right {
+      margin: 6px 0;
+    }
+    .mt-trigger-wrapper {
+      z-index: 910;
+    }
+  }
+  
+  &_console {
+    padding: 16px 0;
+    .#{$prefix-console-button}_reset {
+      margin-right: 16px;
+    }
+  }
+  
+  &_row-console {
+    .#{$prefix-console-button}:not(.this-is-used-for-increase-specificity) {
+      height: auto;
+      > .#{$prefix-console-button} {
+        padding-right: 0;
+        + span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &_data-grid {
+    .#{$prefix}_row-console {
+      margin-top: -3px;
+      margin-bottom: -8px;
+      .#{$prefix-console-button} {
+        padding: 1px 3px;
+        margin-bottom: 5px;
+        .block-icon {
+          line-height: 1;
+        }
+      }
+    }
+    .ant-table-pagination {
+      margin-bottom: 0;
+    }
+    .ant-table-empty {
+      margin-bottom: 0;
+    }
+  }
+}

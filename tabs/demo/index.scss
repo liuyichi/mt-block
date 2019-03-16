@@ -1,0 +1,18 @@
+.tabs-demo-label {
+  margin-bottom: 10px;
+  display: block;
+}
+.mt-tabs {
+  margin-bottom: 20px;
+}
+
+.tabs-position-demo {
+  .tabs-demo-label {
+    display: inline-block;
+  }
+  .mt-select {
+    margin-left: 10px;
+    display: inline-block;
+    width: 80px;
+  }
+}

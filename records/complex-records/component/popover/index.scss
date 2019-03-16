@@ -1,0 +1,121 @@
+@import '../../../../style/themes/default';
+/* https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_popovers.scss */
+
+$popover-bg: #fff !default;
+$popover-border-color: $border-color-base !default;
+$popover-arrow-width: 5px !default;
+$popover-arrow-color: $popover-bg !default;
+$popover-arrow-outer-width: ($popover-arrow-width + 0) !default;
+$popover-arrow-outer-color: $popover-border-color !default;
+
+//防止与其他组件的样式的污染
+$prefixCls: 'mt-complex-records';
+.#{$prefixCls} .popover {
+  position: absolute;
+  z-index: 5;
+
+  // Offset the popover to account for the popover arrow
+  &.top {
+    left: 50%;
+    bottom: 100%;
+    margin-top: -$popover-arrow-width;
+    border-bottom: $popover-arrow-width solid transparent;
+    transform: translate(-50%, 0);
+  }
+  &.right {
+    top: 50%;
+    border-left: $popover-arrow-width solid transparent;
+    transform: translate(0, -50%);
+  }
+  &.bottom {
+    left: 50%;
+    top: 100%;
+    border-top: $popover-arrow-width solid transparent;
+    transform: translate(-50%, 0);
+  }
+  &.left {
+    top: 50%;
+    margin-left: -$popover-arrow-width;
+    border-right: $popover-arrow-width solid transparent;
+    transform: translate(0, -50%);
+  }
+  & > .popover__arrow {
+    border-width: $popover-arrow-outer-width;
+    &, &:after {
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+    }
+    &:after {
+      border-width: $popover-arrow-width;
+      content: "";
+    }
+  }
+  &.top > .popover__arrow {
+    left: 50%;
+    margin-left: -$popover-arrow-outer-width;
+    border-bottom-width: 0;
+    border-top-color: $popover-arrow-outer-color;
+    bottom: -$popover-arrow-outer-width;
+    &:after {
+      content: " ";
+      bottom: 2px;
+      margin-left: -$popover-arrow-width;
+      border-bottom-width: 0;
+      border-top-color: $popover-arrow-color;
+    }
+  }
+  &.right > .popover__arrow {
+    top: 50%;
+    left: -$popover-arrow-outer-width;
+    margin-top: -$popover-arrow-outer-width;
+    border-left-width: 0;
+    border-right-color: $popover-arrow-outer-color;
+    &:after {
+      content: " ";
+      left: 2px;
+      bottom: -$popover-arrow-width;
+      border-left-width: 0;
+      border-right-color: $popover-arrow-color;
+    }
+  }
+  &.bottom > .popover__arrow {
+    left: 50%;
+    margin-left: -$popover-arrow-outer-width;
+    border-top-width: 0;
+    border-bottom-color: $popover-arrow-outer-color;
+    top: -$popover-arrow-outer-width;
+    &:after {
+      content: " ";
+      top: 2px;
+      margin-left: -$popover-arrow-width;
+      border-top-width: 0;
+      border-bottom-color: $popover-arrow-color;
+    }
+  }
+  &.left > .popover__arrow {
+    top: 50%;
+    right: -$popover-arrow-outer-width;
+    margin-top: -$popover-arrow-outer-width;
+    border-right-width: 0;
+    border-left-color: $popover-arrow-outer-color;
+    &:after {
+      content: " ";
+      right: 2px;
+      border-right-width: 0;
+      border-left-color: $popover-arrow-color;
+      bottom: -$popover-arrow-width;
+    }
+  }
+  &__content {
+    font-size: 12px;
+    background-color: $popover-bg;
+    background-clip: padding-box;
+    border: 1px solid $popover-border-color;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, .1);
+  }
+}

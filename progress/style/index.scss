@@ -1,0 +1,68 @@
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
+@import "./mixin";
+
+$progress-prefix-cls: #{$prefix-cls}-progress;
+
+
+.progress-color{
+  &-checkIcon{
+    color: #85d262;
+  }
+  &-closeIcon{
+    color: #ff5400;
+  }
+  &-trail{
+    stroke: #D9D9D9;
+  }
+}
+.#{$progress-prefix-cls}{
+  &-stroke-default{
+    stroke:#36bcf9 ;
+  }
+  &-stroke-seccess{
+    stroke: #85d262;
+  }
+  &-stroke-error{
+    stroke:#ff5400 ;
+  }
+  &-checkIcon{
+    color: #85d262;
+  }
+  &-closeIcon{
+    color: #ff5400;
+  }
+  &-trail{
+    stroke: #D9D9D9;
+  }
+  &-line{
+    &>svg{
+      width: 92%;
+      vertical-align: middle;
+      &+*{
+        display: inline-block;
+        margin-left: 1%;
+        vertical-align: middle;
+      }
+    }
+  }
+  &-circle{
+    &-text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      color: #666;
+    }
+    &-box{
+      position: relative;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+}
+
+
+
+
+

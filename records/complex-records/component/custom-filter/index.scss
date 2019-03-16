@@ -1,0 +1,60 @@
+@import '../../../../style/themes/default';
+@import "../../../../style/mixins/index";
+
+//防止与其他组件的样式的污染
+$prefixCls: 'mt-complex-records';
+.#{$prefixCls} .custom-filter {
+  width: 172px;
+  &__search {
+    padding: 14px 9px 4px 9px;
+  }
+  &__list {
+    max-height: 288px;
+    overflow-y: auto;
+  }
+  &__list-item {
+    font-size: 14px;
+    line-height: 16px;
+    position: relative;
+    &:hover {
+      background-color: $background-color-base;
+    }
+  }
+  &__item-checkbox {
+    display: block;
+    padding: 10px;
+  }
+  &__operation {
+    border-top: 1px solid #f5f5f5;
+    padding: 8px 9px;
+    @include clearfix();
+  }
+  &__operation__custom {
+    float: left;
+  }
+  &__operation__base {
+    float: right;
+  }
+  &__operation__base-btn {
+    margin-left: 10px;
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+  &__item-drag-icon {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 4px;
+    font-size: 12px;
+    color: #ccc;
+    z-index: 5;
+    padding: 4px;
+    width: auto;
+  }
+  &__list-item:hover .custom-filter__item-drag-icon {
+    display: block;
+    &:hover {
+      cursor: move;
+    }
+  }
+}
